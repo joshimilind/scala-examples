@@ -1,3 +1,5 @@
+import scala.io.StdIn
+
 object Example extends App {
 
   def lastRecursive[A](ls: List[A]): A = ls match {
@@ -5,17 +7,23 @@ object Example extends App {
     case _ :: tail => lastRecursive(tail)
     case _         => throw new NoSuchElementException
   }
+  def isPalindrome[A](ls: List[A]): Boolean = ls == ls.reverse
 
-  def nthElement[A](elem: Int, ls: List[A]): A = (elem, ls) match {
-    case (0, h :: Nil)     => h
-    case (elem, _ :: tail) => nthElement(elem - 1, tail)
-    case (_, Nil)          => throw new NoSuchElementException
+  def factorial(n: Int): Int = {
+    if (n == 0) 1
+    else factorial(n - 1) * n
   }
-
   val lst = List(6, 5, 4, 7, 4, 2, 1)
+  val palindromeCheck1 = List(1, 2, 3, 4, 5, 4, 3, 2, 1)
+  val palindromeCheck2 = List("abc", "def", "ghi")
+
   println(lastRecursive(lst))
   println(lst.last)
-  println("nth element")
-  println(nthElement(2, lst))
+  println(isPalindrome(palindromeCheck1))
+  println(isPalindrome(palindromeCheck2))
+
+  println("number ?")
+  val num = StdIn.readInt
+  println(factorial(num))
 
 }
